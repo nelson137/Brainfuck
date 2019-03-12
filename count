@@ -1,0 +1,7 @@
+#!/bin/bash
+# For each filename given, print the number of Brainfuck command it contains
+
+for fn in "$@"; do
+    clean="$(grep -Eo '(\[|\]|\+|-|>|<|\.|,)' "$fn" | tr -d '\n')"
+    echo "$fn: $(echo -n "$clean" | wc -m)"
+done
